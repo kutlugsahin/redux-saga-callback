@@ -1,0 +1,28 @@
+{
+  "name": "redux-saga-callback",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "kutlu sahin",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build:lib": "tsc&&webpack --config config/webpack.lib.config.js",
+    "tsc": "tsc"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-typescript": "^7.6.0",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "typescript": "^3.6.3",
+    "@types/redux-saga": "^0.10.5",
+    "@types/redux": "^3.6.0",
+    "redux-saga": "^1.1.1"
+  },
+  "peerDependencies": {
+    "redux": "^4.0.4",
+    "redux-saga": "^1.1.1"
+  }
+}

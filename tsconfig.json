@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"lib": [
+			"esnext", "es2015.generator"
+		],
+		"module": "esnext",
+		"moduleResolution": "node",
+		"emitDeclarationOnly": true,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"preserveConstEnums": true,
+		"removeComments": false,
+		"skipLibCheck": true,
+		"target": "esnext",
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"strictFunctionTypes": true,
+		"declaration": true,
+		"declarationDir": "dist/types",
+		"noImplicitThis": false
+	},
+	"include": [
+		"./src"
+	]
+}
