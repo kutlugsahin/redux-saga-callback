@@ -1,6 +1,6 @@
-import { CallEffect, Effect, call, all, take, put } from 'redux-saga/effects';
-import { eventChannel, EventChannel, END } from 'redux-saga';
 import { Action } from 'redux';
+import { END, eventChannel, EventChannel, SagaIterator } from 'redux-saga';
+import { all, call, CallEffect, put, take } from 'redux-saga/effects';
 
 function createCallbackChannel(action: any): EventChannel<any> {
 	return eventChannel((emit: any) => {
@@ -19,7 +19,7 @@ function createCallbackChannel(action: any): EventChannel<any> {
 }
 
 export function putWait(action: Action): CallEffect {
-	return call(function* (): IterableIterator<Effect<any>> {
+	return call(function* (): SagaIterator {
 		const channel = yield call(createCallbackChannel, action);
 		const [{ err, result }] = yield all([take(channel), put(action)]);
 		if (err) {

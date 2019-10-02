@@ -1,16 +1,17 @@
 import { Action } from "redux";
-import { Effect, call } from "redux-saga/effects";
+import { SagaIterator } from "redux-saga";
+import { call } from "redux-saga/effects";
 
 export interface ActionWithCallback extends Action{
 	onComplete: (error: any, result: any) => void;
 }
 
-type SagaType = (action: Action) => IterableIterator<any>; 
+type SagaType = (action: Action) => SagaIterator; 
 
 export function withCallback(saga: SagaType): SagaType {
-	return function* (action: Action): IterableIterator<Effect> {
-		let error: any;
-		let result: any;
+	return function* (action: Action): SagaIterator {
+		let error;
+		let result;
 		try {
 			result = yield call(saga, action);
 		} catch (err) {

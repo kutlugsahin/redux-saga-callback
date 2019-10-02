@@ -1,6 +1,6 @@
 {
   "name": "redux-saga-callback",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "author": "kutlu sahin",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "babel-loader": "^8.0.6",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9",
-    "typescript": "3.5.3",
+    "typescript": "^3.6.3",
     "@types/redux-saga": "^0.10.5",
     "@types/redux": "^3.6.0",
     "redux-saga": "^1.1.1"
