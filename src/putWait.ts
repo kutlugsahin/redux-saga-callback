@@ -19,9 +19,9 @@ function createCallbackChannel(action: any): EventChannel<any> {
 }
 
 export function putWait(action: Action): CallEffect {
-	return call(function* (): IterableIterator<Effect> {
-		const channel: any = yield call(createCallbackChannel, action);
-		const [{ err, result }]: any[] = yield all([take(channel), put(action)]);
+	return call(function* (): IterableIterator<Effect<any>> {
+		const channel = yield call(createCallbackChannel, action);
+		const [{ err, result }] = yield all([take(channel), put(action)]);
 		if (err) {
 			throw err;
 		}

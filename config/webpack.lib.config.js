@@ -13,6 +13,7 @@ module.exports = {
         filename: 'index.js',
         libraryTarget: 'umd',
     },
+    target: 'web',
     module: {
         rules: [
             {
@@ -28,8 +29,5 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.ts'],
     },
-    externals: {
-        'redux': 'redux',
-        'redux-saga': 'redux-saga',
-    }
+    externals: ['redux', 'redux-saga']
 };
