@@ -1,29 +1,21 @@
 const path = require('path');
 
-const libPath = path.resolve(__dirname, '../', 'src');
-const outPath = path.resolve(__dirname, '../', 'dist');
+const libPath = path.resolve(__dirname, '../', 'demo');
+const outPath = path.resolve(__dirname, '../', 'demo', 'dist');
 
 console.warn('============= reading webpack.lib.config.js ====================');
 
 module.exports = {
-    mode: 'production',
-    entry: path.join(libPath, 'index.ts'),
+    mode: 'development',
+    entry: path.join(libPath, 'index.js'),
     output: {
         path: outPath,
         filename: 'index.js',
-        libraryTarget: 'umd',
-        globalObject: 'this',
     },
+    devtool: 'source-map',
+    target: 'node',
     module: {
         rules: [
-            {
-                test: /\.tsx?$/,
-                include: libPath,
-                loader: 'babel-loader',
-                options: {
-                    configFile: path.resolve(__dirname, './babel.config.js'),
-                },
-            },
             {
                 test: /\.jsx?$/,
                 include: libPath,
@@ -36,6 +28,5 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.ts'],
-    },
-    externals: ['redux', 'redux-saga'],
+    }
 };

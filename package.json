@@ -1,6 +1,6 @@
 {
   "name": "redux-saga-callback",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "author": "kutlu sahin",
   "license": "MIT",
@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "build:lib": "tsc&&webpack --config config/webpack.lib.config.js",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "build:demo": "webpack --config config/webpack.app.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
