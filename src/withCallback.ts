@@ -1,25 +1,41 @@
 import { Action } from "redux";
-import { SagaIterator } from "redux-saga";
-import { call } from "redux-saga/effects";
+import { SagaIterator, Saga } from "redux-saga";
+import { call, cancelled } from "redux-saga/effects";
 
-export interface ActionWithCallback extends Action{
-	onComplete: (error: any, result: any) => void;
+export interface OnCompleteResult {
+	error?: any;
+	cancelled?: boolean;
+	data?: any;
+};
+
+type OnComplete = (result: OnCompleteResult) => void;
+
+export interface ActionWithCallback extends Action {
+	onComplete: OnComplete;
 }
 
-type SagaType = (action: Action) => SagaIterator; 
+function onComplete(action: Action, result: OnCompleteResult) {
+	if ((action as ActionWithCallback).onComplete) {
+		(action as ActionWithCallback).onComplete(result);
+	}
+}
 
-export function withCallback(saga: SagaType): SagaType {
+export function withCallback(saga: Saga): Saga {
 	return function* (action: Action): SagaIterator {
-		let error;
-		let result;
+		let error = undefined;
+		let data = undefined;
 		try {
-			result = yield call(saga, action);
+			data = yield call(saga, action);
 		} catch (err) {
 			error = err;
+		} finally {
+			if (yield cancelled()) {
+				return onComplete(action, { cancelled: true });
+			}
 		}
 
-		if ((action as ActionWithCallback).onComplete) {
-			(action as ActionWithCallback).onComplete(error, result);
-		}
+		onComplete(action, {
+			error, data
+		});
 	};
 }
