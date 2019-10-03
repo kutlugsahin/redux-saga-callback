@@ -9,19 +9,24 @@ npm i redux-saga-callback
 ```
 
 ### Usage
-
 ```js
-// wrap your saga generator with withCallback
+import { putWait, withCallback } from 'redux-saga-callback';
+```
+
+Wrap your saga generator with withCallback
+```js
 takeEvery('FETCH_USERS', withCallback(fetchUsers));
 ```
+
+Defined callback in your action if you need
 ```js
-// defined callback in your action if you need
 dispatch({type: 'FETCH_USERS', onComplete: ({error, cancelled, data}) => {
 
 }})
 ```
+
+In saga you can wait for it (no callback definition is needed with putWait)
 ```js
-// in saga you can wait for it (no callback definition is needed with putWait)
 const users = yield putWait({type: 'FETCH_USERS'});
 ```
 
