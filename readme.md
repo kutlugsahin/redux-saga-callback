@@ -62,7 +62,7 @@ function* fetchUsers() {
 
 export function*(){
     yield all([
-        takeEvery('FETCH_USERS', withCallback(fethcUsers))
+        takeEvery('FETCH_USERS', withCallback(fetchUsers))
     ])
 }
 
@@ -128,7 +128,7 @@ function* loadCurrentUserData() {
 
 export function*(){
     yield all([
-        takeEvery('LOAD_CURRENT_USER', fethcUsers)
+        takeEvery('LOAD_CURRENT_USER', fetchUsers)
     ])
 }
 
